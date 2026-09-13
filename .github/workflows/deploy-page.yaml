@@ -35,6 +35,9 @@ jobs:
               uses: NiklasEi/wasm-opt-action@v2
               with:
                   file: dist/*.wasm
+                  options: -Os --strip-debug --strip-dwarf --strip-producers
+            - name: Report bundle size
+              run: ls -lh dist/*.wasm
             - name: Deploy to GitHub Pages
               uses: JamesIves/github-pages-deploy-action@v4.2.5
               with:
