@@ -1,2 +1,5 @@
 /target
 /dist
+
+# wrangler local cache (contains account id / account name)
+.wrangler/
