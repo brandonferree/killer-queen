@@ -36,6 +36,10 @@ jobs:
               with:
                   file: dist/*.wasm
                   options: -Os --strip-debug --strip-dwarf --strip-producers
+            - name: Fix subresource integrity hashes
+              # Must run after wasm-opt, which rewrites the wasm and so
+              # invalidates the digest trunk stamped into index.html.
+              run: python3 build/fix-integrity.py dist
             - name: Report bundle size
               run: ls -lh dist/*.wasm
             - name: Deploy to GitHub Pages

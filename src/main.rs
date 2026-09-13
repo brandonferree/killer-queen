@@ -48,6 +48,12 @@ fn main() {
                         title: "Killer Queen".to_string(),
                         resolution: WindowResolution::new(WINDOW_WIDTH, WINDOW_HEIGHT),
                         resizable: true,
+                        // Render into the canvas already present in index.html.
+                        // Without this, the web build ignores that element and
+                        // appends a second canvas to the end of <body>, leaving
+                        // visitors looking at an empty placeholder. Ignored on
+                        // native targets.
+                        canvas: Some("#bevy".to_string()),
                         ..Default::default()
                     }),
                     ..Default::default()

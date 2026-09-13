@@ -5,6 +5,11 @@
         <title>Killer Queen</title>
         <link data-trunk rel="copy-dir" href="assets"/>
         <link data-trunk rel="copy-file" href="build/icon.ico"/>
+        <!-- Static hosts fall back to serving index.html for unmatched paths
+             unless a 404.html exists. Bevy probes for optional `.meta` sidecar
+             files, so without this it parses HTML as asset metadata and every
+             asset fails to load. -->
+        <link data-trunk rel="copy-file" href="build/404.html"/>
         <link rel="icon" href="icon.ico">
         <link data-trunk rel="inline" href="build/styles.css"/>
     </head>
