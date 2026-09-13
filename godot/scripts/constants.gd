@@ -24,6 +24,10 @@ static var ship_speed := 30.0
 static var berries_to_win := 6
 static var fullscreen := false
 
+# --- Keyboard "devices". Gamepads use their own non-negative device ids. ---
+const KEYBOARD_ARROWS := -1  ## arrows + Space/Up + Down
+const KEYBOARD_WASD := -2    ## A/D + W/F + S
+
 # --- Collision layers (bit masks). Platforms use the default layer 1. ---
 const LAYER_WORLD := 1
 const LAYER_PLAYERS := 2

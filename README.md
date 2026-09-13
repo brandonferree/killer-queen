@@ -15,7 +15,9 @@ and gates (phase 2), berries, the ship and the three win conditions (phase 3),
 gate claiming, fighters and combat (phase 4), and the settings menu, fullscreen
 and the Windows build (phase 5). See [godot/README.md](godot/README.md) for the
 commands, including how to export `KillerQueen.exe`. Press LB to join Yellow or
-RB to join Purple (keyboard: 1 / 2); the first player on a team is its queen.
+RB to join Purple; the keyboard counts as two players (1 / 2 join with the
+arrow keys, 3 / 4 with WASD), so two people can play with no gamepad. The first
+player on a team is its queen.
 Select leaves during the join screen (keyboard: Backspace). Both queens fly
 through their start gate to begin. In play: D-pad or stick moves, A jumps or
 flaps, and queens and fighters dive with down (keyboard: arrows, Space, Down).

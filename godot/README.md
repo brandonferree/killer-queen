@@ -5,11 +5,15 @@ command line below (`godot` = `%LOCALAPPDATA%\Microsoft\WinGet\Links\godot_conso
 
 ## Controls
 
-- **Join screen:** LB joins Yellow, RB joins Purple (keyboard `1` / `2`).
-  First player on a team is the queen. Select/Back (`Backspace`) leaves.
-  Both queens fly through their start gate to begin.
+- **Join screen:** LB joins Yellow, RB joins Purple. The keyboard counts as two
+  separate players: `1` / `2` join with the arrow keys, `3` / `4` join with
+  WASD, so two people can play with no gamepad at all. First player on a team
+  is the queen. Select/Back leaves (`Backspace` for the arrow-key player,
+  `Delete` for the WASD one). Both queens fly through their start gate to begin.
 - **In game:** D-pad/stick to move, jump button to jump (queens and fighters
   hold it to fly), down while airborne to dive.
+  - Arrow-key player: arrows to move, `Space` or `Up` to jump, `Down` to dive.
+  - WASD player: `A` / `D` to move, `W` or `F` to jump, `S` to dive.
 - **Start** (keyboard `Esc`) opens the settings menu; **F11** or **Alt+Enter**
   toggles fullscreen.
 

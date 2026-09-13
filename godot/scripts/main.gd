@@ -3,8 +3,10 @@ extends Node2D
 ## Mirrors src/join.rs, src/gates.rs (setup) and the state handling in
 ## src/main.rs of the Rust version.
 ##
-## Join: LB joins Yellow, RB joins Purple (keyboard: 1 / 2). The first player on
-## a team is its queen. Select/Back (keyboard: Backspace) leaves during the join
+## Join: LB joins Yellow, RB joins Purple. The keyboard counts as two players:
+## 1 / 2 join with the arrow keys, 3 / 4 join with WASD, so two people can play
+## without a gamepad. The first player on a team is its queen. Select/Back
+## (keyboard: Backspace, or Delete for the WASD player) leaves during the join
 ## screen. Both queens fly through their start gate to begin the match.
 
 enum State { JOIN, PLAY, GAME_OVER }
@@ -296,11 +298,17 @@ func _unhandled_input(event: InputEvent) -> void:
 	elif event is InputEventKey and event.pressed and not event.echo:
 		match event.keycode:
 			KEY_1:
-				_join(-1, Constants.Team.YELLOW)
+				_join(Constants.KEYBOARD_ARROWS, Constants.Team.YELLOW)
 			KEY_2:
-				_join(-1, Constants.Team.PURPLE)
+				_join(Constants.KEYBOARD_ARROWS, Constants.Team.PURPLE)
+			KEY_3:
+				_join(Constants.KEYBOARD_WASD, Constants.Team.YELLOW)
+			KEY_4:
+				_join(Constants.KEYBOARD_WASD, Constants.Team.PURPLE)
 			KEY_BACKSPACE:
-				_leave(-1)
+				_leave(Constants.KEYBOARD_ARROWS)
+			KEY_DELETE:
+				_leave(Constants.KEYBOARD_WASD)
 
 
 ## Start (keyboard: Escape) opens the settings menu; F11 / Alt+Enter toggles
@@ -391,7 +399,8 @@ func _spawn_player(team: int, is_queen: bool, device: int,
 func _update_hud() -> void:
 	match state:
 		State.JOIN:
-			var lines := ["LB: join Yellow    RB: join Purple    Select: leave"]
+			var lines := ["LB: join Yellow    RB: join Purple    Select: leave",
+					"Keyboard: 1 / 2 to join with arrows, 3 / 4 to join with WASD"]
 			var missing: Array[String] = []
 			for team in [Constants.Team.YELLOW, Constants.Team.PURPLE]:
 				if _find_queen(team) == null:

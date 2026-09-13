@@ -4,7 +4,8 @@ extends CharacterBody2D
 ## clamps, a single jump for workers and repeatable wing flaps for the queen.
 ##
 ## Input comes straight from a device id so several gamepads can play at once
-## without per-player InputMap actions. Device -1 means the keyboard.
+## without per-player InputMap actions. Device -1 is the arrow-key half of the
+## keyboard, -2 the WASD half, so two people can play with no gamepad at all.
 
 ## Emitted when this player's hitbox starts touching another player. Main
 ## resolves who dies or gets knocked back (src/player.rs players_attack).
@@ -60,7 +61,7 @@ var is_queen := false
 ## A worker that carried a berry through a friendly gate: flies and fights
 ## like the queen but its deaths do not count, and it respawns as a worker.
 var is_fighter := false
-var device := -1
+var device := Constants.KEYBOARD_ARROWS
 var has_wings: bool:
 	get: return is_queen or is_fighter
 
@@ -342,9 +343,16 @@ func _update_animation(delta: float, on_ground: bool, dive: bool) -> void:
 
 # --- Raw input per device -------------------------------------------------
 
+const KEYBOARD_ARROWS := Constants.KEYBOARD_ARROWS
+const KEYBOARD_WASD := Constants.KEYBOARD_WASD
+
+
+
 func _read_move_axis() -> float:
-	if device < 0:
+	if device == KEYBOARD_ARROWS:
 		return Input.get_axis("ui_left", "ui_right")
+	if device == KEYBOARD_WASD:
+		return float(Input.is_key_pressed(KEY_D)) - float(Input.is_key_pressed(KEY_A))
 	var axis := Input.get_joy_axis(device, JOY_AXIS_LEFT_X)
 	if absf(axis) < 0.5:
 		axis = 0.0
@@ -356,14 +364,18 @@ func _read_move_axis() -> float:
 
 
 func _read_jump() -> bool:
-	if device < 0:
+	if device == KEYBOARD_ARROWS:
 		return Input.is_key_pressed(KEY_SPACE) or Input.is_key_pressed(KEY_UP)
+	if device == KEYBOARD_WASD:
+		return Input.is_key_pressed(KEY_W) or Input.is_key_pressed(KEY_F)
 	return Input.is_joy_button_pressed(device, JOY_BUTTON_A)
 
 
 func _read_dive() -> bool:
-	if device < 0:
+	if device == KEYBOARD_ARROWS:
 		return Input.is_key_pressed(KEY_DOWN)
+	if device == KEYBOARD_WASD:
+		return Input.is_key_pressed(KEY_S)
 	if Input.is_joy_button_pressed(device, JOY_BUTTON_DPAD_DOWN):
 		return true
 	return Input.get_joy_axis(device, JOY_AXIS_LEFT_Y) > 0.9

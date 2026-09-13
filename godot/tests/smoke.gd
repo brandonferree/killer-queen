@@ -227,6 +227,26 @@ func _run() -> void:
 	var rw = main._find_player(1)
 	check(rw != null and not rw.is_fighter and not rw.has_wings, "fighter respawned as a worker")
 
+	# --- Second keyboard player (WASD) joins as its own device.
+	main._join(Constants.KEYBOARD_WASD, Team.YELLOW)
+	await step(2)
+	var kb2 = main._find_player(Constants.KEYBOARD_WASD)
+	check(kb2 != null, "WASD player joined as device -2")
+	check(main._find_player(Constants.KEYBOARD_ARROWS) != kb2, "arrow-key player is separate")
+	await _press(KEY_D)
+	check(kb2._read_move_axis() > 0.0, "D moves the WASD player right")
+	await _release(KEY_D)
+	await _press(KEY_RIGHT)
+	check(kb2._read_move_axis() == 0.0, "arrow keys do not drive the WASD player")
+	await _release(KEY_RIGHT)
+	await _press(KEY_W)
+	check(kb2._read_jump(), "W is the WASD player's jump")
+	await _release(KEY_W)
+	await _press(KEY_S)
+	check(kb2._read_dive(), "S is the WASD player's dive")
+	await _release(KEY_S)
+	kb2.free()
+
 	# --- Phase 5: settings menu, persistence, fullscreen toggle.
 	var menu = main.settings_menu
 	main._handle_menu_input(_key(KEY_ESCAPE))
@@ -296,3 +316,19 @@ func _save_shot(path: String) -> void:
 	var img := root.get_viewport().get_texture().get_image()
 	img.save_png(path)
 	print("saved screenshot to ", ProjectSettings.globalize_path(path))
+
+
+## Synthesised key hold/release. parse_input_event only reaches
+## Input.is_key_pressed once the buffered events are flushed.
+func _press(code: Key) -> void:
+	Input.parse_input_event(_key(code))
+	Input.flush_buffered_events()
+	await process_frame
+
+
+func _release(code: Key) -> void:
+	var e := _key(code)
+	e.pressed = false
+	Input.parse_input_event(e)
+	Input.flush_buffered_events()
+	await process_frame
