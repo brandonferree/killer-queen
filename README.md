@@ -1,12 +1,28 @@
 # Killer Queen
 
+## Godot port (in progress)
 
-https://github.com/user-attachments/assets/11dd2800-690f-4fe5-892e-8723432e974f
+The game is being ported to Godot 4 as a native couch game; the Rust/Bevy code
+below is kept only as a reference until the port is done. The Godot project
+lives in `godot/`. Open it with the Godot 4 editor and press Play, or run:
 
+```bash
+godot --path godot
+```
 
-This is a clone of the killer queen arcade game. Play either by
-1. Cloning locally and running `cargo run --features bevy/dynamic_linking --release`
-2. Go to https://lukemcneil.github.io/killer-queen/ (compiled to WebAssembly)
+Done so far: map layout and movement (phase 1), the join screen with roles
+and gates (phase 2), berries, the ship and the three win conditions (phase 3),
+gate claiming, fighters and combat (phase 4), and the settings menu, fullscreen
+and the Windows build (phase 5). See [godot/README.md](godot/README.md) for the
+commands, including how to export `KillerQueen.exe`. Press LB to join Yellow or
+RB to join Purple (keyboard: 1 / 2); the first player on a team is its queen.
+Select leaves during the join screen (keyboard: Backspace). Both queens fly
+through their start gate to begin. In play: D-pad or stick moves, A jumps or
+flaps, and queens and fighters dive with down (keyboard: arrows, Space, Down).
+A worker carrying a berry into a neutral or friendly gate becomes a fighter
+after one second. Rounds restart three seconds after a win. Mayflash F300
+Start (keyboard: Esc) opens the settings menu; F11 toggles fullscreen. Mayflash
+F300 sticks work in XInput/DP mode. Headless checks live in `godot/tests/smoke.gd`.
 
 ## How to Play
 

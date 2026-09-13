@@ -3,3 +3,9 @@
 
 # wrangler local cache (contains account id / account name)
 .wrangler/
+
+# Godot editor cache
+godot/.godot/
+
+# Godot exported builds
+godot/build/

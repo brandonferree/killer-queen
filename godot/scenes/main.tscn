@@ -1,0 +1,79 @@
+[gd_scene load_steps=6 format=3 uid="uid://kq_main_scene"]
+
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_main"]
+[ext_resource type="Script" path="res://scripts/level.gd" id="2_level"]
+[ext_resource type="FontFile" path="res://assets/fonts/FiraSans-Bold.ttf" id="3_font"]
+[ext_resource type="Script" path="res://scripts/berries.gd" id="4_berries"]
+[ext_resource type="Script" path="res://scripts/settings_menu.gd" id="5_settings"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_main")
+
+[node name="Level" type="Node2D" parent="."]
+script = ExtResource("2_level")
+
+[node name="Gates" type="Node2D" parent="."]
+
+[node name="Berries" type="Node2D" parent="."]
+script = ExtResource("4_berries")
+
+[node name="ShipHolder" type="Node2D" parent="."]
+
+[node name="Players" type="Node2D" parent="."]
+
+[node name="SettingsMenu" type="CanvasLayer" parent="."]
+script = ExtResource("5_settings")
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="HUD"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -800.0
+offset_top = 440.0
+offset_right = 800.0
+offset_bottom = 580.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("3_font")
+theme_override_font_sizes/font_size = 40
+text = "Join"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="YellowLives" type="Label" parent="HUD"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -246.0
+offset_top = 8.0
+offset_right = 54.0
+offset_bottom = 60.0
+grow_horizontal = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("3_font")
+theme_override_font_sizes/font_size = 40
+text = "Lives: 3"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PurpleLives" type="Label" parent="HUD"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -54.0
+offset_top = 8.0
+offset_right = 246.0
+offset_bottom = 60.0
+grow_horizontal = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("3_font")
+theme_override_font_sizes/font_size = 40
+text = "Lives: 3"
+horizontal_alignment = 1
+vertical_alignment = 1
