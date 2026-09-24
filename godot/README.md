@@ -11,7 +11,7 @@ command line below (`godot` = `%LOCALAPPDATA%\Microsoft\WinGet\Links\godot_conso
   is the queen. Select/Back leaves (`Backspace` for the arrow-key player,
   `Delete` for the WASD one). Both queens fly through their start gate to begin.
 - **In game:** D-pad/stick to move, jump button to jump (queens and fighters
-  hold it to fly), down while airborne to dive.
+  hold it to fly), down while airborne to dive (queens only).
   - Arrow-key player: arrows to move, `Space` or `Up` to jump, `Down` to dive.
   - WASD player: `A` / `D` to move, `W` or `F` to jump, `S` to dive.
 - **Start** (keyboard `Esc`) opens the settings menu; **F11** or **Alt+Enter**

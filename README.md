@@ -20,7 +20,7 @@ arrow keys, 3 / 4 with WASD), so two people can play with no gamepad. The first
 player on a team is its queen.
 Select leaves during the join screen (keyboard: Backspace). Both queens fly
 through their start gate to begin. In play: D-pad or stick moves, A jumps or
-flaps, and queens and fighters dive with down (keyboard: arrows, Space, Down).
+flaps, and queens dive with down (keyboard: arrows, Space, Down).
 A worker carrying a berry into a neutral or friendly gate becomes a fighter
 after one second. Rounds restart three seconds after a win. Mayflash F300
 Start (keyboard: Esc) opens the settings menu; F11 toggles fullscreen. Mayflash
