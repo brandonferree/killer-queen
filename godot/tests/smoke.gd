@@ -244,6 +244,10 @@ func _run() -> void:
 	await _release(KEY_W)
 	await _press(KEY_S)
 	check(kb2._read_dive(), "S is the WASD player's dive")
+	# Only queens dive: a fighter holding dive keeps flying normally.
+	kb2.is_fighter = true
+	await step(2)
+	check(not kb2.is_diving, "fighters cannot dive")
 	await _release(KEY_S)
 	kb2.free()
 

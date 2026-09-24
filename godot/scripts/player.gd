@@ -67,7 +67,7 @@ var has_wings: bool:
 
 # --- State ---
 var facing_right := false
-## True while the dive input is held (queens and fighters only).
+## True while the dive input is held (queens only, as in src/player.rs).
 var is_diving := false
 ## Seconds spent transforming inside a gate, or -1 when not transforming.
 var gate_time := -1.0
@@ -255,7 +255,7 @@ func _physics_process(delta: float) -> void:
 			return
 		jump_just_pressed = false
 
-	var dive := has_wings and _read_dive()
+	var dive := is_queen and _read_dive()
 	is_diving = dive
 	var on_ground := is_on_floor()
 	var m := mass
